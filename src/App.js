@@ -1,8 +1,14 @@
 import './App.css';
+import Input from "./components/Input"
+import List from "./components/List"
 
 function App() {
   return (
-    <h1>This is the app now</h1>
+    <div>
+      <h1>This is the main app now</h1>
+      <Input />
+      <List />
+    </div>
   );
 }
 
