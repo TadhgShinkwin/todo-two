@@ -6,15 +6,15 @@ function App() {
   const [ todo, setTodo ] = useState("walk dog")
 
   function changeState(){
-    setTodo("go home")
+    setTodo(todo ==="walk dog" ? "go home" : "walk dog")
   }
 
   return (
     <div>
       <h1>This is the main app now - {todo}</h1>
-      <Input />
+      <Input changeState = {changeState}/>
       <List />
-      <button onClick={changeState}></button>
+      <button onClick={changeState}>Button</button>
     </div>
   );
 }
