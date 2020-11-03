@@ -5,7 +5,6 @@ function List(props){
     
     const items = props.todoList.map(todo => <TodoItem 
         item={todo}
-        handleDelete={props.handleDelete}
     />)
     return(
         <div>

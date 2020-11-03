@@ -4,7 +4,7 @@ import List from "./components/List"
 
 function App() {
   const [ todo, setTodo ] = useState("")
-  const [ todoList, setTodoList] = useState(["Say Hello", "Say Goodbye"])
+  const [ todoList, setTodoList] = useState([])
 
 
   let handleChange = e =>{
@@ -15,7 +15,10 @@ function App() {
   let handleSubmit = e =>{
     e.preventDefault()
     if(todo){
-      const newTodo = todo
+      const newTodo = {
+        id: todoList.length,
+        text: todo
+      }
       const updatedTodos = [...todoList, newTodo]
       setTodoList(updatedTodos)
       setTodo("")
@@ -25,11 +28,12 @@ function App() {
     }
   }
   let clearList = () => setTodoList([])
-
+  
+  
 
   return (
     <div>
-      <h1>This is the main app now - {todo}</h1>
+      <h1>This is the main app now</h1>
       <Input 
       todo={todo}
       handleChange={handleChange}
