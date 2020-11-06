@@ -39,3 +39,6 @@ body {
   align-items: center;
   justify-content: center;
 }
+.input input {
+  text-align: center;
+}

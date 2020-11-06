@@ -1,11 +1,14 @@
 import React, {useState} from "react"
 import Input from "./components/Input"
 import TodoItem from "./components/TodoItem"
+import { ReactSortable } from "react-sortablejs"
 import "./App.css"
+
 
 function App() {
   const [todoList, setTodoList] = useState([])
 
+ 
 
   const addTodo = text =>{ //this function adds a new todo to the existing list
      const newTodos = [...todoList, {text}]
@@ -39,6 +42,7 @@ function App() {
     <div className="app"> 
       <div className="todo-list">
         <h1>ToDo list</h1>
+        <ReactSortable list={todoList} setList={setTodoList}>
         {todoList.map((todo, index)=>
         <TodoItem 
           key={index}
@@ -47,7 +51,7 @@ function App() {
           completeTodo={completeTodo}
           removeTodo={removeTodo}
           chooseColor={chooseColor}
-        />)}
+        />)}</ReactSortable>
         <button onClick={clearList}>Clear List</button>
         <hr></hr>
         <Input addTodo={addTodo}/>

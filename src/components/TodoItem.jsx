@@ -3,7 +3,7 @@ import React from "react"
 
  function TodoItem({todo, index, completeTodo, removeTodo, chooseColor}){
      return(
-         <div style={{backgroundColor: todo.color ? todo.color: "", textDecoration: todo.isCompleted ? "line-through":""}} className="todo">{/*Put in style for this div - ternary*/}
+         <div style={{backgroundColor: todo.color ? todo.color: "", textDecoration: todo.isCompleted ? "line-through":""}} className="todo">
              {todo.text}
              <div>
                  <button onClick={()=>completeTodo(index)}>&#10004;</button>
