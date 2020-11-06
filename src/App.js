@@ -1,47 +1,57 @@
 import React, {useState} from "react"
 import Input from "./components/Input"
-import List from "./components/List"
+import TodoItem from "./components/TodoItem"
+import "./App.css"
 
 function App() {
-  const [ todo, setTodo ] = useState("")
-  const [ todoList, setTodoList] = useState([])
+  const [todoList, setTodoList] = useState([])
 
 
-  let handleChange = e =>{
-    const{name, value} = e.target
-    setTodo(value)
+  const addTodo = text =>{ //this function adds a new todo to the existing list
+     const newTodos = [...todoList, {text}]
+     console.log(newTodos)
+     setTodoList(newTodos)
+     console.log(todoList)
   }
 
-  let handleSubmit = e =>{
-    e.preventDefault()
-    if(todo){
-      const newTodo = {
-        id: todoList.length,
-        text: todo
-      }
-      const updatedTodos = [...todoList, newTodo]
-      setTodoList(updatedTodos)
-      setTodo("")
-    }
-    else{
-      alert("Nothing entered!")
-    }
+  const completeTodo = index =>{ //this function marks the specified (by index) todo as complete
+    const newTodos = [...todoList]
+    newTodos[index].isCompleted = !newTodos[index].isCompleted
+    setTodoList(newTodos)
   }
-  let clearList = () => setTodoList([])
+
+  const removeTodo = index =>{ //this function removes the specified (by index) todo from the list
+    const newTodos = [...todoList]
+    newTodos.splice(index, 1)
+    setTodoList(newTodos)
+  }
+
+  const clearList = () => setTodoList([]) //this function clears the entire list
   
+  const chooseColor = (index, value) =>{
+    const newTodos = [...todoList]
+    newTodos[index].color = value
+    setTodoList(newTodos)
+  }
   
 
   return (
-    <div>
-      <Input 
-      todo={todo}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      />
-      <List 
-      todoList={todoList}
-      clearList={clearList}
-      />
+    <div className="app"> 
+      <div className="todo-list">
+        <h1>ToDo list</h1>
+        {todoList.map((todo, index)=>
+        <TodoItem 
+          key={index}
+          index={index}
+          todo={todo}
+          completeTodo={completeTodo}
+          removeTodo={removeTodo}
+          chooseColor={chooseColor}
+        />)}
+        <button onClick={clearList}>Clear List</button>
+        <hr></hr>
+        <Input addTodo={addTodo}/>
+      </div>
     </div>
   );
 }

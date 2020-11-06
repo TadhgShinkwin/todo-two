@@ -1,41 +1,22 @@
-import React, {useState, useEffect} from "react"
-
-function TodoItem(props){
-    
-    const [checker, setChecker]=useState(false)
-    const [tester, setTester] = useState("")
+import React from "react"
 
 
-    let chosenStyle
-    const checkedStyle = {
-        textDecoration: "line-Through",
-        color: "#737373"
-    }
-    const defaultStyle={
-        textDecoration: "none"
-    }
-
-    useEffect(()=> {
-        if(checker){
-            setTester("checked")
-        }
-        else{
-            setTester("unchecked")
-        }
-    }, [checker])
-
-    return(
-        <div>
-            <label style={chosenStyle}><input 
-            type="checkbox" 
-            name="checked"
-            checked={checker}
-            onChange={()=>setChecker(!checker)}
-            />
-            {props.item.text} </label>
-            <p>{tester}</p>
-        </div>
-    )
-}
+ function TodoItem({todo, index, completeTodo, removeTodo, chooseColor}){
+     return(
+         <div style={{backgroundColor: todo.color ? todo.color: "", textDecoration: todo.isCompleted ? "line-through":""}} className="todo">{/*Put in style for this div - ternary*/}
+             {todo.text}
+             <div>
+                 <button onClick={()=>completeTodo(index)}>&#10004;</button>
+                 <button onClick={()=>removeTodo(index)}>X</button>
+                 <select name="colorChoose" value={todo.color} onChange={e=>chooseColor(index,e.target.value)}>
+                     <option value="" disabled selected>--Set Difficulty--</option>
+                     <option value="#99ffbb">Easy</option>
+                     <option value="#ffbf80">Medium</option>
+                     <option value="#ff8080">Hard</option>
+                 </select>
+             </div>
+         </div>
+     )
+ }
 
 export default TodoItem

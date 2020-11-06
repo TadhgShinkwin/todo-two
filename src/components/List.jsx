@@ -8,7 +8,7 @@ function List(props){
     />)
     return(
         <div>
-            <h1>This is the list</h1>
+            <h1>This is the old list</h1>
             {items}
             <button onClick={props.clearList}>Clear List</button>
         </div>

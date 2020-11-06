@@ -1,18 +1,23 @@
-import React from "react"
+import React, {useState} from "react"
 
-function Input(props){
+function Input({addTodo}){
+    const [value, setValue] = useState("")
+
+    const handleSubmit = e =>{
+        e.preventDefault()
+        if(!value) return;
+        addTodo(value)
+        setValue("")
+    }
     return(
-        <div>
-            <h1>Input your Todos</h1>
-            <form onSubmit={props.handleSubmit}>
+        <div className="input">
+            <form onSubmit={handleSubmit}>
                 <input 
                 type="text" 
                 placeholder="Add new ToDo"
-                name="todo"
-                value={props.todo}
-                onChange={props.handleChange}
+                value={value}
+                onChange={e=>setValue(e.target.value)}
                 />
-                <button>+</button>
             </form>         
         </div>
     )
