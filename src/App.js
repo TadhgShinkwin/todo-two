@@ -41,20 +41,28 @@ function App() {
   return (
     <div className="app"> 
       <div className="todo-list">
-        <h1>ToDo list</h1>
+        <div className="header">
+          <h1>To-Do List</h1>
+        
+          <hr/>
+        </div>
+        <br/>
         <ReactSortable list={todoList} setList={setTodoList}>
-        {todoList.map((todo, index)=>
-        <TodoItem 
-          key={index}
-          index={index}
-          todo={todo}
-          completeTodo={completeTodo}
-          removeTodo={removeTodo}
-          chooseColor={chooseColor}
-        />)}</ReactSortable>
-        <button onClick={clearList}>Clear List</button>
-        <p><em>*Click and Drag to sort</em></p>
-        <hr></hr>
+          {todoList.map((todo, index)=>
+          <TodoItem 
+            key={index}
+            index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+            chooseColor={chooseColor}
+          />)}
+        </ReactSortable>
+        <div className="controls">
+          <button onClick={clearList} style={{display:todoList.length == 0 ? "none": ""}}>Clear List</button>
+          <p><em>*Click and Drag to sort</em></p>
+          <hr/>
+        </div>
         <Input addTodo={addTodo}/>
       </div>
     </div>

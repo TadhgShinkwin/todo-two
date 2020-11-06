@@ -12,7 +12,7 @@ import React from "react"
         }} 
          className="todo"
          >
-             {todo.text}
+             <div onClick>{todo.text}</div>
              <div>
                  <button onClick={()=>completeTodo(index)}>&#10004;</button>
                  <button onClick={()=>removeTodo(index)}>X</button>
