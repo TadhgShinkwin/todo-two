@@ -53,6 +53,7 @@ function App() {
           chooseColor={chooseColor}
         />)}</ReactSortable>
         <button onClick={clearList}>Clear List</button>
+        <p><em>*Click and Drag to sort</em></p>
         <hr></hr>
         <Input addTodo={addTodo}/>
       </div>
